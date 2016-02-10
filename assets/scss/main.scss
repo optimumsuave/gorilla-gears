@@ -1,0 +1,24 @@
+@import "bourbon";
+
+@import "reset";
+
+@mixin breakpoint($point) {
+  @media (max-width: $point) { @content; }
+}
+
+@mixin breakpointmin($point) {
+  @media (min-width: $point) { @content; }
+}
+
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,600);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,600);
+
+$gray: #666;
+
+body {
+	background: #eee;
+	background: #fff;
+	font-family: 'Montserrat';
+	font-size: 1em;
+	-webkit-font-smoothing: antialiased;
+}
