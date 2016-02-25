@@ -4,9 +4,11 @@
   "description": "Cal Poly Design & Dev Hackathon landing site using HTML5, SASS, jQuery, and Gulp.",
   "dependencies": {
     "gulp": "^3.9.1",
+    "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-uglify": "^1.5.2",
+    "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "node-bourbon": "^4.2.3"
   }

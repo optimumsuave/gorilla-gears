@@ -12,13 +12,632 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,600);
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,600);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
 
+
+$cubic-out: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 $gray: #666;
+$purple: #664099;
+$dkpurple: #361661;
+$light-purple: rgba(102, 64, 153, 0.8);
 
 body {
-	background: #eee;
-	background: #fff;
-	font-family: 'Montserrat';
+	background: $purple;
+	font-family: 'Lato';
 	font-size: 1em;
 	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+header {
+	// background: rgba(255,255,255,1);
+	height: 2.8em;
+	line-height: 2.8em;
+	position: fixed;
+	width: 100%;
+	color: white;	
+	font-weight: 300;
+	z-index: 500;
+
+	h1 {
+		margin-left: 20px;
+		position: relative;
+		z-index: 10;
+		text-transform: uppercase;
+		font-size: 1em;
+		word-spacing: 2px;
+
+		b {
+			font-weight: 400;
+		}
+	}
+
+	.bg {
+		width: 100%;
+		height: 2.8em;
+		background: white;
+		opacity: 0;
+		@include transition(0.5s opacity $cubic-out);
+		position: absolute;
+		z-index: 5;
+	}
+
+	nav {
+		float: right;
+		position: relative;
+		z-index: 15;
+		margin-right: 20px;
+		ul {
+			li {
+				display: inline-block;
+				a {
+					display: inline-block;
+					line-height: 2.8em;
+					color: white;
+					font-weight: 400;
+					opacity: 0.8;
+					padding: 0 10px;
+					cursor: pointer;
+					@include transition(0.2s opacity $cubic-out);
+					
+
+					span {
+						display: block;
+						width: 0%;
+						margin: 0 auto;
+						height: 2px;
+						margin-top: -1px;
+						background: white;
+						@include transition(0.5s width $cubic-out);
+					}
+
+					&:hover {
+						opacity: 1;
+						span {
+							width: 100%;							
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	&.transparent {
+		color: $purple;
+		.bg {
+			opacity: 1;
+		}
+		nav ul li a {
+			color: $purple;
+			span {
+				background: $purple;
+			}
+		}
+	}
+}
+
+section.light-purple {
+	background: $light-purple;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 0.4;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0.4;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes recoil {
+	0% {
+		margin-left: -85px;
+	}
+	50% {
+		margin-left: -105px;
+	}
+	100% {
+		margin-left: -85px;		
+	}
+}
+
+.hero {
+	height: 400px;
+	padding-top: 100px;
+
+	.hero-inner {
+		max-width: 960px;
+		margin: 0 auto;
+	}
+}
+
+.target {
+	width: 30%;
+	padding: 1.5%;
+	float: left;
+	.target-inner {
+		margin-top: 55%;
+		.actual {
+			margin: 0 auto;
+			width: 50px;
+			height: 50px;
+			background: white;
+		}
+	}
+}
+
+.dash {
+	height: 400px;
+	float: left;
+	width: 30%;
+	padding-left: 3%;
+	z-index: 500;
+	position: relative;
+
+	.desk {
+		height: 160px;
+		width: 260px;
+		background: #472C6B;
+		bottom: 0px;
+		float: left;
+	}
+
+	.tower {
+		width: 50px;
+		position: relative;
+		height: 160px;
+		float: left;
+
+		.lights {
+			width: 20px;
+			margin: 0 auto;
+			margin-top: 95px;
+			.light {
+				height: 15px;
+				opacity: 0.6;
+				&.red {
+					background: red;
+				}
+				&.yellow {
+					background: #ffb200;
+				}
+				&.green {
+					background: limegreen;
+				}
+
+			 	&.active {
+			    	animation: blink 0.5s ease-in-out infinite;
+					&.red {
+						box-shadow: 0px 0px 10px 5px rgba(255, 0, 0, 0.5);
+					}
+					&.yellow {
+						box-shadow: 0px 0px 10px 5px rgba(255, 178, 0, 0.5);
+					}
+					&.green {
+						box-shadow: 0px 0px 10px 5px rgba(50, 205, 50, 0.5);
+					}
+
+				}
+			}
+		}
+		.pole {
+			width: 6px;
+			height: 20px;
+			bottom: 0px;
+			position: relative;
+			margin: 0 auto;
+			background: #999;
+		}
+	}
+
+	.computer {
+		width: 210px;
+		height: 160px;
+		position: relative;
+		float: left;
+
+		.stand {
+			width: 40px;
+			margin: 0 auto;
+			height: 10px;
+			background: #bbb;
+			clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+		}
+
+		.frame {
+			width: 100%;
+			height: 150px;
+			border-radius: 6px;
+			overflow: hidden;
+			background: #ccc;
+			.screen {
+				background: black;
+				width: 100%;
+				height: 130px;
+
+				.screen-inner {
+					width: 90%;
+					top: 10px;
+					position: relative;
+					margin: 0 10px;
+					height: 110px;
+					background: #444;
+					font-size: 0.8em;
+
+					font-family: 'Source Code Pro';
+
+
+					span {
+						display: inline-block;
+						padding: 5px;
+						color: white;
+						b {
+							&.red {
+								color: red;
+							}
+							&.yellow {
+								color: #ffb200;
+							}
+							&.green {
+								color: limegreen;
+							}
+						}
+					}
+
+					input {
+						border: 0;
+						background: none;
+						outline: 0;
+						display: block;
+						padding: 5%;
+						width: 90%;
+						bottom: 0px;
+						position: absolute;
+						color: limegreen;
+						background: #333;
+						font-family: 'Source Code Pro';
+
+						&.red {
+							color: red;
+						}
+						&.yellow {
+							color: #ffb200;
+						}
+						&.green {
+							color: limegreen;
+						}
+				}
+
+
+				}
+			}
+		}
+	}
+}
+
+.laser {
+	height: 400px;
+	float: left;
+	width: 30%;
+	padding: 1.5%;
+
+	.laser-inner {
+		margin: 0 auto;
+		width: 170px;
+		height: 120px;
+		transform-origin: 25px 115px;
+    	transition: 0.5s all ease-in-out;
+    	position: relative;
+    	z-index: 50;
+
+		.shaft {
+			margin-left: -85px;
+			.chamber {
+				background: #888;
+				width: 100%;
+				height: 40px;
+			    bottom: 20px;
+			    position: absolute;
+
+			    .control {
+		    	    position: absolute;
+				    right: 30px;
+				    top: -5px;
+				    width: 20px;
+				    padding: 5px;
+				    height: 20px;
+				    background: #333;
+				    border-radius: 6px;
+
+			    	.led {
+			    		width: 10px;
+			    		height: 5px;
+			    		background: red;
+			    		animation: blink 1s ease-in-out infinite;
+			    		&.red {
+			    			background: #cc0000;
+			    			animation: blink 2.4s linear infinite;
+			    		}
+			    	}
+			    }
+			}
+			.stand {
+				background: #444;
+			    width: 30px;
+			    height: 45px;
+			    border-radius: 6px;
+			    bottom: -8px;
+			    left: 15px;
+			    position: absolute;
+			}
+
+			.barrel {
+				background: #999;
+				height: 20px;
+				bottom: 30px;
+				position: absolute;
+				width: 45%;
+				transform: translateX(200%);
+
+				.coils {
+					position: absolute;
+				    top: -5px;
+				    left: 20px;
+				    height: 30px;
+
+				    .coil {
+				    	width: 2px;
+				    	height: 30px;
+				    	background: #bbb;
+				    	float: left;
+				    	transform: rotate(8deg);
+				    	margin-right: 5px;
+				    }
+				}
+
+				.muzzle {
+					position: absolute;
+					right: 0px;
+					background: #eee;
+					height: 30px;
+					width: 20px;
+    				top: -4px;
+
+    				svg.top {
+					    bottom: 29px;
+					    left: 5px;
+					    position: absolute;
+					    width: 40px;
+					    height: 40px;
+					    transform-origin: 5px 40px;
+				    	transition: 1.5s all ease-in-out;
+
+    				}
+
+    				svg.bottom {
+					    top: 29px;
+					    left: 5px;
+					    position: absolute;
+					    width: 40px;
+					    height: 40px;
+					    transform-origin: 5px 0px;
+    					transition: 1.5s all ease-in-out;
+    				}
+
+    				svg path {
+    					fill: #ccc;
+    				}
+
+    				.tip {
+    					width: 20px;
+					    position: relative;
+					    right: -20px;
+					    height: 10px;
+					    top: 10px;
+    					transition: 2s all ease-in-out;
+					    background: #eee;
+						box-shadow: 5px 0px 10px 2px rgba(255,255,255,0);
+    				}
+				}
+			}
+
+			.rings {
+				position: absolute;
+				bottom: 10px;
+				width: 100%;
+
+				.ring {
+					float: left;
+					background: #444;
+					width: 4px;
+					height: 60px;
+					margin-left: 10px;
+				}
+
+				.pulse {
+					float: left;
+					width: 10px;
+					height: 60px;
+					top: 20px;
+					margin-left: 10px;
+					background: #444444;
+
+
+					.pulse-dot {
+						background: #9C63E8;
+						box-shadow: 0px 2px 7px 2px rgba(255,255,255, 0.9);
+
+						width: 10px;
+						height: 10px;
+						display: block;
+						opacity: 0;
+						animation: pulse 2s infinite ease-in-out;
+						&:nth-child(1) {
+							animation-delay: 0.2s;
+						}
+						&:nth-child(2) {
+							animation-delay: 0.4s;
+						}
+						&:nth-child(3) {
+							animation-delay: 0.6s;
+						}
+						&:nth-child(4) {
+							animation-delay: 0.8s;
+						}
+						&:nth-child(5) {
+							animation-delay: 1s;
+						}
+						&:nth-child(6) {
+							animation-delay: 1.2s;
+						}
+					}
+				}
+
+				.cap {
+					position: absolute;
+					bottom: 5px;
+					right: 0;
+					width: 20px;
+					background: #666;
+					height: 50px;
+				}
+
+				svg.hose {
+					overflow: visible;
+				    position: absolute;
+				    right: 0;
+				    z-index: 200;
+				    path {
+				    	fill: none;
+				    	// stroke: #ccc;
+				    	stroke-width: 4px;
+				    }
+				}
+			}
+		}
+
+		&.active {
+			transform: rotate(18deg);
+
+
+			.shaft .barrel .muzzle {
+				svg {
+					&.top {
+						transform: rotate(18deg);
+					}
+					&.bottom {
+						transform: rotate(-18deg);
+					}
+				}
+				.tip {
+					box-shadow: 5px 0px 10px 2px rgba(255,255,255,0.5);
+				}
+			}
+		}
+
+		&.recoil {
+			.shaft {
+				@include animation(0.3s recoil $cubic-out);
+				margin-left: -85px;
+			}
+		}
+	}
+
+	.tripod {
+		height: 200px;
+		width: 140px;
+		padding-left: 50px;
+		position: relative;
+
+		.leg {
+			width: 10px;
+			background: #333;
+			float: left;
+
+			&.l {
+				transform: rotate(18deg);
+				height: 190px;
+				margin-top: 5px;
+				margin-right: 20px;
+				z-index: 200;
+				position: relative;
+			}
+
+			&.c {
+				margin-top: 10px;
+				margin-right: 20px;
+				height: 160px;
+			}
+
+			&.r {
+				transform: rotate(-18deg);
+				height: 200px;
+			}
+		}
+
+		svg.cable {
+			z-index: 100;
+			overflow: visible;
+			position: absolute;
+			left: -110px;
+			@include transition(all 0.5s ease-out);
+		}
+	}
+}
+
+@include keyframes(fadeIn) {
+	0% { 
+		opacity: 0; 
+	}
+	100% { 
+		opacity: 1; 
+	}
+}
+
+
+.ball-outer {
+	position: absolute;
+	width: 100%;
+	top: 30%;
+	.ball {
+		margin: 0 auto;
+		display: block;
+		width: 100px;
+		height: 100px;
+		background-color: rgba(102,64,153,0.2);
+		border-radius: 50%;
+		box-shadow: inset -10px -25px 30px rgba(0,0,0,0.4);
+		// background-image: -webkit-linear-gradient(-45deg, rgba(255,255,220,.2) 0%, transparent 100%);
+		// background-image: -moz-linear-gradient(-45deg, rgba(255,255,220,.2) 0%, transparent 100%);  
+		// background-image: -o-linear-gradient(-45deg, rgba(255,255,220,.2) 0%, transparent 100%);
+		// background-image: -ms-linear-gradient(-45deg, rgba(255,255,220,.2) 0%, transparent 100%);
+
+		
+
+		@include animation(fadeIn 10s $cubic-out);
+
+	}
+}
+section {
+	min-height: 200vh;
 }
