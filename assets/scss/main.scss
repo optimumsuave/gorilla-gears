@@ -50,6 +50,7 @@ header {
 		text-transform: uppercase;
 		font-size: 1em;
 		word-spacing: 2px;
+		display: none;
 
 		b {
 			font-weight: 400;
@@ -108,6 +109,9 @@ header {
 
 
 	&.transparent {
+		h1 {
+			display: block;
+		}
 		color: $purple;
 		.bg {
 			opacity: 1;
@@ -161,27 +165,78 @@ section.light-purple {
 	}
 }
 
+.payload-wrap {
+	max-width: 400px;
+	width: 100%;
+	top: 50px;
+    left: 20px;
+	position: absolute;
+
+	p {
+		color: white;
+		padding: 10px;
+	}
+
+	.payload-outer {
+		font-size: 1em;
+	    width: 100%;
+	    font-family: 'Source Code Pro';
+	    color: limegreen;
+	    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.1);
+		border-radius: 6px;
+		background: rgba(0,0,0,0.4);
+		max-width: 400px;
+
+		.carrot {
+			padding-left: 20px;
+			font-weight: 800;
+		}
+
+		#payload {
+			font-size: 1em;
+	    	padding: 20px;
+		    border: 0;
+		    padding-left: 10px;
+		    display: inline-block;
+		    color: limegreen;
+	    	font-family: 'Source Code Pro';
+		    background: none;
+		    width: 340px;
+		}
+
+	}
+
+}
 .hero {
-	height: 400px;
-	padding-top: 100px;
+	height: 500px;
 
 	.hero-inner {
-		max-width: 960px;
-		margin: 0 auto;
+		padding-top: 100px;
+		// margin: 0 auto;
+		width: 100%;
 	}
 }
 
 .target {
-	width: 30%;
-	padding: 1.5%;
-	float: left;
+	width: 97%;
+    max-width: 50%;
+    padding: 1.5%;
+    top: 60%;
+    margin: 0 auto;
+    position: relative;
 	.target-inner {
-		margin-top: 55%;
 		.actual {
+			width: 10%;
+			// padding: 20px;
 			margin: 0 auto;
-			width: 50px;
-			height: 50px;
-			background: white;
+			// width: 50px;
+			// height: 50px;
+			// max-width: 400px;
+			@include transition(0.4s all $cubic-out);
+
+			img {
+				width: 100%;
+			}
 		}
 	}
 }
@@ -256,6 +311,23 @@ section.light-purple {
 		position: relative;
 		float: left;
 
+
+		.suggestion {
+			position: absolute;
+			// width: 300px;
+			top: 90%;
+			background: rgba(0,0,0,0.8);
+			background: rgba(255,255,255,0.9);
+			border-radius: 6px;
+			color: white;
+			color: #333;
+			box-shadow: 0px 5px 20px 10px rgba(0,0,0,0.1);
+			padding: 20px;
+			z-index: 500;
+			font-size: 0.9em;
+			display: none;
+		}
+
 		.stand {
 			width: 40px;
 			margin: 0 auto;
@@ -283,9 +355,7 @@ section.light-purple {
 					height: 110px;
 					background: #444;
 					font-size: 0.8em;
-
 					font-family: 'Source Code Pro';
-
 
 					span {
 						display: inline-block;
@@ -304,31 +374,33 @@ section.light-purple {
 						}
 					}
 
-					input {
-						border: 0;
-						background: none;
-						outline: 0;
-						display: block;
-						padding: 5%;
-						width: 90%;
-						bottom: 0px;
-						position: absolute;
-						color: limegreen;
-						background: #333;
-						font-family: 'Source Code Pro';
+					
 
-						&.red {
-							color: red;
-						}
-						&.yellow {
-							color: #ffb200;
-						}
-						&.green {
-							color: limegreen;
-						}
-				}
+					// input {
+					// 	border: 0;
+					// 	background: none;
+					// 	outline: 0;
+					// 	display: block;
+					// 	padding: 5%;
+					// 	padding-left: 15%;
+					// 	font-size: 1.6em;
+					// 	width: 80%;
+					// 	bottom: 0px;
+					// 	position: absolute;
+					// 	color: limegreen;
+					// 	background: #333;
+					// 	font-family: 'Source Code Pro';
 
-
+						// &.red {
+						// 	color: red;
+						// }
+						// &.yellow {
+						// 	color: #ffb200;
+						// }
+						// &.green {
+						// 	color: limegreen;
+						// }
+					// }
 				}
 			}
 		}
@@ -336,14 +408,16 @@ section.light-purple {
 }
 
 .laser {
+	top: 140px;
+	position: absolute;
 	height: 400px;
 	float: left;
-	width: 30%;
-	padding: 1.5%;
+	width: 300px;
+	width: 400px;
 
 	.laser-inner {
 		margin: 0 auto;
-		width: 170px;
+		width: 184px;
 		height: 120px;
 		transform-origin: 25px 115px;
     	transition: 0.5s all ease-in-out;
@@ -402,7 +476,7 @@ section.light-purple {
 				.coils {
 					position: absolute;
 				    top: -5px;
-				    left: 20px;
+				    left: 25px;
 				    height: 30px;
 
 				    .coil {
@@ -486,12 +560,13 @@ section.light-purple {
 					.pulse-dot {
 						background: #9C63E8;
 						box-shadow: 0px 2px 7px 2px rgba(255,255,255, 0.9);
-
+						opacity: 0;
 						width: 10px;
 						height: 10px;
 						display: block;
 						opacity: 0;
-						animation: pulse 2s infinite ease-in-out;
+						@include transition(0.2s opacity $cubic-out);
+						
 						&:nth-child(1) {
 							animation-delay: 0.2s;
 						}
@@ -553,6 +628,16 @@ section.light-purple {
 					box-shadow: 5px 0px 10px 2px rgba(255,255,255,0.5);
 				}
 			}
+
+			
+		}
+
+			
+		&.pulsing {
+			.pulse .pulse-dot {
+				opacity: 1;
+				@include animation(pulse 2s infinite ease-in-out);
+			}
 		}
 
 		&.recoil {
@@ -566,8 +651,10 @@ section.light-purple {
 	.tripod {
 		height: 200px;
 		width: 140px;
-		padding-left: 50px;
+		// padding-left: 50px;
 		position: relative;
+		width: 200px;
+		margin:0 auto;
 
 		.leg {
 			width: 10px;
@@ -599,8 +686,11 @@ section.light-purple {
 			z-index: 100;
 			overflow: visible;
 			position: absolute;
-			left: -110px;
+			// left: -110px;
 			@include transition(all 0.5s ease-out);
+
+			left: -25%;
+    		margin-left: -110px;
 		}
 	}
 }
@@ -614,30 +704,44 @@ section.light-purple {
 	}
 }
 
+section {
+	min-height: 100vh;
+	clear: both;
 
-.ball-outer {
-	position: absolute;
-	width: 100%;
-	top: 30%;
-	.ball {
-		margin: 0 auto;
-		display: block;
-		width: 100px;
-		height: 100px;
-		background-color: rgba(102,64,153,0.2);
-		border-radius: 50%;
-		box-shadow: inset -10px -25px 30px rgba(0,0,0,0.4);
-		// background-image: -webkit-linear-gradient(-45deg, rgba(255,255,220,.2) 0%, transparent 100%);
-		// background-image: -moz-linear-gradient(-45deg, rgba(255,255,220,.2) 0%, transparent 100%);  
-		// background-image: -o-linear-gradient(-45deg, rgba(255,255,220,.2) 0%, transparent 100%);
-		// background-image: -ms-linear-gradient(-45deg, rgba(255,255,220,.2) 0%, transparent 100%);
+	&.hero {
+		min-height: 400px;
+		// position: absolute;
+		// width: 100%;
+		// float: left;
+	}
 
-		
-
-		@include animation(fadeIn 10s $cubic-out);
-
+	h1 {
+		font-size: 2.6em;
+		color: white;
+		text-align: center;
+		font-weight: 300;
 	}
 }
-section {
-	min-height: 200vh;
+
+
+section.about {
+	h1 {
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		b {
+			font-weight: 600;
+		}
+	}
+	.logo {
+		width: 100%;
+	}
+
+	// img {
+		// width: 
+	// }
+
+	h2 {
+		text-align: center;
+	}
 }

@@ -55,17 +55,15 @@ App.prototype.init = function(){
 		}
 	});
 
-	$(".screen-inner span, #payload").hide();
-	$(".screen-inner").hide().fadeIn(500);
 	setTimeout(function(){
-		$(".screen-inner span, #payload").fadeIn(500);
 		setTimeout(function(){
 
 
 			var tubeval = "";
 			var d = 0;
 			var k = 0;
-			var sample = "background: red";
+			// var sample = "background: #361661";
+			var sample = "width: 100%";
 
 			function changeInput(){
 				if(k<sample.length){
@@ -85,13 +83,13 @@ App.prototype.init = function(){
 			}
 			
 		}, 1000);
-	}, 1000)
+	}, 500)
 }
 
 App.prototype.standBy = function(){
 
 	$(".status").html("standBy").removeClass("red yellow green").addClass("red");
-	$("#payload").removeClass("red yellow green").addClass("red");
+	// $("#payload").removeClass("red yellow green").addClass("red");
 	$(".laser-inner").removeClass("active");
 	$(".laser-inner").removeClass("recoil");
 	$(".light").removeClass("active");
@@ -102,14 +100,14 @@ App.prototype.warmUp = function(){
 	var _this = this;
 	$(".laser-inner").removeClass("recoil");
 	$(".status").html("warmUp").removeClass("red yellow green").addClass("yellow");
-	$(".laser-inner").addClass("active");
+	$(".laser-inner").addClass("active pulsing");
 	$(".light").removeClass("active");
 	$(".light.yellow").addClass("active");
-	$("#payload").removeClass("red yellow green").addClass("yellow");
+	// $("#payload").removeClass("red yellow green").addClass("yellow");
 
 	setTimeout(function(){
 		_this.fire();
-	}, 1500);
+	}, 1000);
 }
 
 App.prototype.fire = function(){
@@ -117,7 +115,7 @@ App.prototype.fire = function(){
 	$(".status").html("ready").removeClass("red yellow green").addClass("green");	
 	$(".light").removeClass("active");
 	$(".light.green").addClass("active");
-	$("#payload").removeClass("red yellow green").addClass("green");
+	// $("#payload").removeClass("red yellow green").addClass("green");
 
 	$(".laser-inner").addClass("recoil");
 
